@@ -1,37 +1,70 @@
 # 🚕 Ucab — Ride Booking Application
 
-A full-stack MERN (MongoDB, Express, React, Node.js) ride-booking web application with Passenger, Driver, and Admin roles.
+> A full-stack MERN web application for booking rides online with real-time tracking, fare calculation, PDF receipts and role-based dashboards for Passengers, Drivers and Admins.
+
+![Made with React](https://img.shields.io/badge/Frontend-React.js-blue)
+![Node.js](https://img.shields.io/badge/Backend-Node.js-green)
+![MongoDB](https://img.shields.io/badge/Database-MongoDB-brightgreen)
+![JWT](https://img.shields.io/badge/Auth-JWT-orange)
 
 ---
 
 ## 🎥 Demo Video
 
-👉 [Click here to watch the demo](https://drive.google.com/file/d/13CmvQdnqDYZKCBsYsbfcjM9_TYPI86wF/view?usp=sharing)
+👉 [Click here to watch the full demo](https://drive.google.com/file/d/13CmvQdnqDYZKCBsYsbfcjM9_TYPI86wF/view?usp=sharing)
 
 ---
 
 ## 🚀 Features
 
-- **Passenger** — Register, login, book rides, track rides live, view payment history, download PDF receipts
-- **Driver** — Login, accept/decline ride requests, start and complete rides, view earnings
-- **Admin** — Manage users, drivers, rides and payments from a dashboard
-- **Map Integration** — Leaflet maps with Andhra Pradesh locations, click to set pickup/dropoff
-- **Fare Calculator** — Economy ₹6/km, Comfort ₹9/km, Premium ₹14/km
-- **PDF Receipts** — Download or email ride receipts
-- **Forgot Password** — OTP-based password reset
+### 👤 Passenger
+- Register and login securely
+- Book rides using interactive Leaflet map
+- Select pickup and dropoff by clicking on map
+- View fare estimate before booking
+- Track ride status live (auto-refreshes every 3 seconds)
+- View complete ride history
+- Download PDF receipt after ride
+- Email receipt to registered email
+- OTP-based forgot password
+
+### 🚗 Driver
+- Login to dedicated driver dashboard
+- View incoming ride requests in real time
+- Accept or decline ride requests
+- Start and complete rides
+- View total earnings and completed rides
+
+### 🛠 Admin
+- View and delete all registered users
+- Register and verify drivers
+- View all rides with status
+- View all payments and total revenue
+- Full dashboard with stats overview
 
 ---
 
 ## 🛠 Tech Stack
 
-| Layer     | Technology                        |
-|-----------|-----------------------------------|
-| Frontend  | React.js, Bootstrap 5, Leaflet    |
-| Backend   | Node.js, Express.js               |
-| Database  | MongoDB (Mongoose)                |
-| Auth      | JWT (JSON Web Tokens), bcryptjs   |
-| PDF       | PDFKit                            |
-| Email     | Nodemailer (Gmail)                |
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React.js, Bootstrap 5, Leaflet Maps |
+| Backend | Node.js, Express.js |
+| Database | MongoDB, Mongoose |
+| Authentication | JWT, bcryptjs |
+| PDF Generation | PDFKit |
+| Email | Nodemailer (Gmail) |
+| Maps | Leaflet, OpenStreetMap, Nominatim |
+
+---
+
+## 💰 Fare Structure
+
+| Cab Type | Rate |
+|----------|------|
+| 🚗 Economy | ₹6 per km |
+| 🚙 Comfort | ₹9 per km |
+| 🏎️ Premium | ₹14 per km |
 
 ---
 
@@ -39,30 +72,45 @@ A full-stack MERN (MongoDB, Express, React, Node.js) ride-booking web applicatio
 
 ```
 Ucab/
-├── Client/          # React frontend
+├── Client/                  # React Frontend
 │   ├── public/
 │   └── src/
-│       ├── pages/   # All page components
-│       ├── components/
-│       ├── context/
-│       └── api.js
-├── Server/          # Node.js backend
-│   └── server.js
-└── docs/            # Documentation
+│       ├── pages/           # All page components
+│       ├── components/      # Navbar, PrivateRoute
+│       ├── context/         # AuthContext
+│       ├── api.js           # Axios instance
+│       ├── App.js           # Routes
+│       └── index.js         # Entry point
+├── Server/                  # Node.js Backend
+│   ├── server.js            # All backend code
+│   └── .env                 # Environment variables
+├── docs/                    # Documentation
+└── README.md
 ```
 
 ---
 
-## ⚙️ Setup & Run
+## ⚙️ Setup & Installation
 
-### Backend
+### Prerequisites
+- Node.js v18+
+- MongoDB v6+
+- npm v9+
+
+### Step 1 — Clone Repository
+```bash
+git clone https://github.com/your-username/Ucab.git
+cd Ucab
+```
+
+### Step 2 — Setup Backend
 ```bash
 cd Server
 npm install
 npm run dev
 ```
 
-### Frontend
+### Step 3 — Setup Frontend
 ```bash
 cd Client
 npm install
@@ -87,13 +135,52 @@ DISABLE_ESLINT_PLUGIN=true
 
 ---
 
-## 👤 Default Roles
+## 🌐 Running the App
 
-| Role      | How to Access                        |
-|-----------|--------------------------------------|
-| Passenger | Register at /register                |
-| Driver    | Admin registers driver from dashboard|
-| Admin     | Set role to 'admin' in MongoDB       |
+| Service | URL |
+|---------|-----|
+| Frontend | http://localhost:3000 |
+| Backend API | http://localhost:5000/api |
+| Database | mongodb://localhost:27017/ucab |
+
+---
+
+## 👤 User Roles
+
+| Role | Access | How to Get |
+|------|--------|-----------|
+| Passenger | Book rides, track, payments | Register at /register |
+| Driver | Accept rides, earnings | Admin registers from dashboard |
+| Admin | Full control | Set role to 'admin' in MongoDB |
+
+---
+
+## 📋 API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | /api/auth/register | Register user |
+| POST | /api/auth/login | Login user |
+| POST | /api/rides/book | Book a ride |
+| GET | /api/rides/estimate | Get fare estimate |
+| GET | /api/rides/history | Ride history |
+| PUT | /api/rides/:id/accept | Accept ride |
+| GET | /api/payments | Payment history |
+| GET | /api/payments/:id/download | Download PDF |
+
+---
+
+## 👨‍💻 Team
+
+| Name | 
+|------|------|
+| A. Ramakrishna
+| B. Sasi Kumar 
+| A. Prasad 
+| K. Nagarjuna Reddy 
+
+**Institution:** Seshadri Rao Gudlavalleru Engineering College
+**Batch:** 2023 — 2027
 
 ---
 
@@ -101,4 +188,6 @@ DISABLE_ESLINT_PLUGIN=true
 
 For any issues contact: support@ucab.in
 
-© 2024 Ucab — Andhra Pradesh, India
+---
+
+© 2026 Ucab — Andhra Pradesh, India
